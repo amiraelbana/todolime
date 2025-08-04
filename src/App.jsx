@@ -1,26 +1,29 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider
+} from 'firebase/auth';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC4ujCh4fFUor4KCNzW4oKBQi7_FbkKTk0",
-  authDomain: "todolime.firebaseapp.com",
-  projectId: "todolime",
-  storageBucket: "todolime.firebasestorage.app",
-  messagingSenderId: "625611876999",
-  appId: "1:625611876999:web:5e175219a188c7d87c6622"
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_AUTH_DOMAIN',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_STORAGE_BUCKET',
+  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+  appId: 'YOUR_APP_ID',
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-};
+initializeApp(firebaseConfig);
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -62,6 +65,14 @@ export default function App() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, provider);
     } catch (error) {
       alert(error.message);
     }
@@ -115,6 +126,12 @@ export default function App() {
           className="bg-lime-500 text-black px-4 py-2 rounded mb-2"
         >
           {forgotPasswordMode ? 'Send Reset Email' : isRegistering ? 'Register' : 'Login'}
+        </button>
+        <button
+          onClick={handleGoogleSignIn}
+          className="bg-white text-black px-4 py-2 rounded mb-4 font-medium"
+        >
+          Continue with Google
         </button>
         <p
           className="text-sm text-gray-400 hover:text-lime-400 cursor-pointer"
