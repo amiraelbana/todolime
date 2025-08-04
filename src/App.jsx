@@ -32,44 +32,58 @@ export default function App() {
 
   if (!started) {
     return (
-      <div className="min-h-screen bg-[#0d1117] text-white p-6 flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl font-bold mb-4">Your intelligent task management companion</h1>
-        <p className="text-lg max-w-xl mb-6 text-gray-300">
-          Organize, collaborate, and achieve more with smart lists, real-time sync, and seamless file sharing.
-        </p>
-        <button
-          onClick={() => setStarted(true)}
-          className="bg-lime-500 hover:bg-lime-600 text-black px-6 py-3 font-semibold rounded-lg text-lg"
-        >
-          Get Started Free
-        </button>
+      <div className="min-h-screen bg-[#0d1117] text-white px-6 py-12 flex flex-col items-center text-center">
+        <header className="w-full max-w-5xl flex justify-between items-center mb-12">
+          <h1 className="text-2xl font-bold">ToDo Lime</h1>
+          <div className="space-x-3">
+            <button className="text-sm text-white hover:text-lime-400">Sign In</button>
+            <button className="bg-lime-500 hover:bg-lime-600 text-black text-sm font-semibold px-4 py-2 rounded-md">
+              Sign up for free
+            </button>
+          </div>
+        </header>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full">
-          {[{
-            title: 'Smart Lists',
-            desc: 'Organize tasks with intelligent categorization, custom icons, and color coding for better visual management.'
-          }, {
-            title: 'Real-time Sync',
-            desc: 'Stay synchronized across all devices with instant updates and offline support for seamless productivity.'
-          }, {
-            title: 'Team Collaboration',
-            desc: 'Share lists with team members, track progress together, and collaborate in real-time with QR code sharing.'
-          }, {
-            title: 'File Attachments',
-            desc: 'Attach files, images, and documents directly to your tasks with secure cloud storage integration.'
-          }, {
-            title: 'Smart Scheduling',
-            desc: 'Intelligent task scheduling with "My Day" smart lists and deadline management for better time management.'
-          }, {
-            title: 'Secure & Private',
-            desc: 'Your data is protected with enterprise-grade security, encrypted storage, and privacy-first design.'
-          }].map((item, index) => (
-            <div key={index} className="bg-[#161b22] border border-gray-700 p-6 rounded-lg">
-              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
-              <p className="text-gray-400 text-sm">{item.desc}</p>
-            </div>
-          ))}
-        </div>
+        <main className="flex flex-col items-center">
+          <h2 className="text-4xl sm:text-5xl font-bold max-w-2xl mb-4 leading-tight">
+            Your intelligent task management companion
+          </h2>
+          <p className="text-lg text-gray-300 max-w-xl mb-8">
+            Organize, collaborate, and achieve more with smart lists, real-time sync, and seamless file sharing.
+          </p>
+          <button
+            onClick={() => setStarted(true)}
+            className="bg-lime-500 hover:bg-lime-600 text-black px-6 py-3 font-semibold rounded-lg text-lg mb-20"
+          >
+            Get Started Free
+          </button>
+
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
+            {[{
+              title: 'Smart Lists',
+              desc: 'Organize tasks with intelligent categorization, custom icons, and color coding for better visual management.'
+            }, {
+              title: 'Real-time Sync',
+              desc: 'Stay synchronized across all devices with instant updates and offline support for seamless productivity.'
+            }, {
+              title: 'Team Collaboration',
+              desc: 'Share lists with team members, track progress together, and collaborate in real-time with QR code sharing.'
+            }, {
+              title: 'File Attachments',
+              desc: 'Attach files, images, and documents directly to your tasks with secure cloud storage integration.'
+            }, {
+              title: 'Smart Scheduling',
+              desc: 'Intelligent task scheduling with "My Day" smart lists and deadline management for better time management.'
+            }, {
+              title: 'Secure & Private',
+              desc: 'Your data is protected with enterprise-grade security, encrypted storage, and privacy-first design.'
+            }].map((item, index) => (
+              <div key={index} className="bg-[#161b22] border border-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </section>
+        </main>
       </div>
     );
   }
